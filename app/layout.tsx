@@ -1,15 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -23,11 +19,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${inter.variable}`}>
+      <body className="bg-slate-900 text-slate-100 min-h-screen antialiased">
+        <header className="border-b border-slate-800 p-4 bg-slate-950/50 backdrop-blur">
+          <div className="max-w-7xl mx-auto flex justify-between items-center">
+            <h1 className="text-xl font-bold tracking-wider text-indigo-400">GLOBAL.SAAS</h1>
+            <nav className="space-x-4 text-sm text-slate-400">
+              <span className="text-emerald-400">● Server-Rendered Environment</span>
+            </nav>
+          </div>
+        </header>
+        <main className="max-w-7xl mx-auto p-6">
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
